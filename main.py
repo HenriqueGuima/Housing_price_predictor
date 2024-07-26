@@ -3,12 +3,15 @@ import numpy
 import matplotlib.pyplot as plt
 import seaborn as sns
 pandas.set_option('display.max_rows', None)
-from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.linear_model import Lasso
 
 # Load the data
 data = pandas.read_csv('data/portugal_apartments.csv')
 
-#copy the data
+# Copy the data
 d_c = data.copy()
 
 # Price column treatment
@@ -64,20 +67,14 @@ d_c['Price_m2'] = d_c['Price_m2'].astype(int)
 # Shuffle rows
 dsc = d_c.sample(frac = 1)
 
-# numerical_columns = dsc.select_dtypes(include=['number']).columns
-
 # Split the data
-# dsc['Price_m2'] = dsc.sum(axis=1).round(2)
 df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42)
 
 # Create a categorical version for the price_m2 variable
 dsc['Price_m2_cat'] = pandas.cut(dsc['Price_m2'], bins=5, labels=False)
 
-# Split the data again with stratification
-df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42, stratify=dsc['Price_m2_cat'])
-
-# dsc['Price_m2'] = pandas.cut(dsc['Price_m2'], bins=5, labels=False)
-# df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42)
+# Random splitting without stratification
+df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42)
 
 # check the proportions of the data
 df_train_tc = df_train['Price_m2'].value_counts() / len(df_train)
@@ -89,6 +86,34 @@ print(df_test_tc)
 print('=============================')
 
 # Save the data
-train.to_csv('data/portugal_apartments_train.csv')
-test.to_csv('data/portugal_apartments_test.csv')
+df_train.to_csv('data/portugal_apartments_train.csv')
+df_test.to_csv('data/portugal_apartments_test.csv')
+
+# Linear Regression
+# lr_model = LinearRegression()
+# lr_model.fit(df_train[['Area']], df_train['Price_m2'])
+
+lasso_model = Lasso(alpha=0.1)  # alpha is the regularization strength
+lasso_model.fit(df_train[['Area']], df_train['Price_m2'])
+
+y_pred_lasso = lasso_model.predict(df_test[['Area']])
+
+# y_pred = lr_model.predict(df_test[['Area']])
+# y_test = df_test['Price_m2']
+
+### BEFORE REGULARIZATION ###
+# MSE: 2206294586.78
+# R2: -0.00
+
+### AFTER REGULARIZATION ###
+# MSE: 7855009.63
+# R2: -0.43
+
+# Model's Evaluation
+mse = mean_squared_error(df_test['Price_m2'], y_pred_lasso)
+r2 = r2_score(df_test['Price_m2'], y_pred_lasso)
+
+print(f'MSE: {mse:.2f}')
+print(f'R2: {r2:.2f}')
+
 
