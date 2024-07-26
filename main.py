@@ -94,16 +94,33 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-y_train_scaled = scaler.fit_transform(y_train.values.reshape(-1, 1)).flatten()
-y_test_scaled = scaler.transform(y_test.values.reshape(-1, 1)).flatten()
+# Remove outliers
+def remove_outliers(df, col):
+    q1 = df[col].quantile(0.25)
+    q3 = df[col].quantile(0.75)
+    iqr = q3 - q1
+    lower_bound = q1 - 1.5 * iqr
+    upper_bound = q3 + 1.5 * iqr
+    return df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+
+# Remove outliers from y_train
+y_train_filtered = remove_outliers(pandas.DataFrame(y_train, columns=['Price_m2']), 'Price_m2')
+X_train_filtered = X_train.loc[y_train_filtered.index]
+
+# y_train_scaled = scaler.fit_transform(y_train.values.reshape(-1, 1)).flatten()
+# y_test_scaled = scaler.transform(y_test.values.reshape(-1, 1)).flatten()
+
+# Re-scale the filtered training data
+X_train_scaled_filtered = scaler.fit_transform(X_train_filtered)
+y_train_scaled_filtered = scaler.fit_transform(y_train_filtered.values.reshape(-1, 1)).flatten()
 
 # Hyperparamenter Tuning to find the optimal alpha value for the Lasso regression model
 alpha_tune = {
-    'alpha': numpy.linspace(start=0.00001, stop=1, num=200),
+    'alpha': numpy.linspace(start=0.00001, stop=1, num=300),
     'tol': [1e-6, 1e-7, 1e-8]
     }
 
-model_tuner = Lasso(fit_intercept=True, max_iter=100000)
+model_tuner = Lasso(fit_intercept=True, max_iter=1000000)
 cross_validation = RepeatedKFold(n_splits=5, n_repeats=3, random_state=1)
 
 grid_search = GridSearchCV(model_tuner, alpha_tune, cv=cross_validation, scoring='neg_mean_squared_error', n_jobs=-1)
