@@ -3,11 +3,11 @@ import numpy
 import matplotlib.pyplot as plt
 import seaborn as sns
 pandas.set_option('display.max_rows', None)
-from sklearn.discriminant_analysis import StandardScaler
+# from sklearn.discriminant_analysis import StandardScaler
 from sklearn.model_selection import GridSearchCV, RepeatedKFold, train_test_split
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.linear_model import Lasso
+from sklearn.preprocessing import StandardScaler
 
 # Load the data
 data = pandas.read_csv('data/portugal_apartments.csv')
@@ -94,15 +94,16 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
+y_train_scaled = scaler.fit_transform(y_train.values.reshape(-1, 1)).flatten()
+y_test_scaled = scaler.transform(y_test.values.reshape(-1, 1)).flatten()
+
 # Hyperparamenter Tuning to find the optimal alpha value for the Lasso regression model
 alpha_tune = {
-    # 'alpha': numpy.logspace(-4, 0, 50),
-    'alpha': numpy.linspace(start=0.000005, stop=0.02, num=200),
-    # 'max_iter': [50000, 100000, 200000],
+    'alpha': numpy.linspace(start=0.00001, stop=1, num=200),
     'tol': [1e-6, 1e-7, 1e-8]
     }
 
-model_tuner = Lasso(fit_intercept=True, max_iter=25000)
+model_tuner = Lasso(fit_intercept=True, max_iter=100000)
 cross_validation = RepeatedKFold(n_splits=5, n_repeats=3, random_state=1)
 
 grid_search = GridSearchCV(model_tuner, alpha_tune, cv=cross_validation, scoring='neg_mean_squared_error', n_jobs=-1)
@@ -115,7 +116,11 @@ best_alpha = grid_search.best_params_
 best_model.fit(X_train_scaled, y_train)
 
 # Prediction
-y_pred = best_model.predict(X_test_scaled)
+y_pred_scaled = best_model.predict(X_test_scaled)
+
+# Inverse transform predictions and target to original scale
+y_pred = scaler.inverse_transform(y_pred_scaled.reshape(-1, 1)).flatten()
+y_test = scaler.inverse_transform(y_test_scaled.reshape(-1, 1)).flatten()
 
 # print('========== BEFORE ===========')
 # print(df_train_tc)
@@ -123,8 +128,11 @@ y_pred = best_model.predict(X_test_scaled)
 # print('=============================')
 
 # Save the data
-X_train_scaled.to_csv('data/portugal_apartments_train.csv')
-X_test_scaled.to_csv('data/portugal_apartments_test.csv')
+# X_train_scaled.to_csv('data/portugal_apartments_train.csv')
+# X_test_scaled.to_csv('data/portugal_apartments_test.csv')
+
+pandas.DataFrame(X_train_scaled).to_csv('data/portugal_apartments_train.csv', index=False)
+pandas.DataFrame(X_test_scaled).to_csv('data/portugal_apartments_test.csv', index=False)
 
 # Linear Regression
 # lr_model = LinearRegression()
