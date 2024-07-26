@@ -6,7 +6,7 @@ pandas.set_option('display.max_rows', None)
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 
 # Load the data
-data = pandas.read_csv('C:/Users/lmars/Desktop/AI projects/Housing_price_predictor/data/portugal_apartments.csv')
+data = pandas.read_csv('data/portugal_apartments.csv')
 
 #copy the data
 d_c = data.copy()
@@ -38,7 +38,7 @@ d_c['Area'] = pandas.to_numeric(d_c['Area'])
 # Create a new column called price_per_sqm
 d_c['Price_m2'] = d_c['Price'] / d_c['Area']
 d_c['Price_m2'] = d_c['Price_m2'].round(2)
-d_c.to_csv('C:/Users/lmars/Desktop/AI projects/Housing_price_predictor/data/portugal_apartments_cleaned.csv')
+d_c.to_csv('data/portugal_apartments_cleaned.csv')
 
 # Data Visualization
 # Mean price per Location
@@ -67,11 +67,17 @@ dsc = d_c.sample(frac = 1)
 # numerical_columns = dsc.select_dtypes(include=['number']).columns
 
 # Split the data
-dsc['Price_m2'] = dsc.sum(axis=1).round(2)
+# dsc['Price_m2'] = dsc.sum(axis=1).round(2)
 df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42)
 
-dsc['Price_m2'] = pandas.cut(dsc['Price_m2'], bins=5, labels=False)
-df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42)
+# Create a categorical version for the price_m2 variable
+dsc['Price_m2_cat'] = pandas.cut(dsc['Price_m2'], bins=5, labels=False)
+
+# Split the data again with stratification
+df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42, stratify=dsc['Price_m2_cat'])
+
+# dsc['Price_m2'] = pandas.cut(dsc['Price_m2'], bins=5, labels=False)
+# df_train, df_test = train_test_split(dsc, test_size=0.2, random_state=42)
 
 # check the proportions of the data
 df_train_tc = df_train['Price_m2'].value_counts() / len(df_train)
@@ -83,6 +89,6 @@ print(df_test_tc)
 print('=============================')
 
 # Save the data
-train.to_csv('C:/Users/lmars/Desktop/AI projects/Housing_price_predictor/data/portugal_apartments_train.csv')
-test.to_csv('C:/Users/lmars/Desktop/AI projects/Housing_price_predictor/data/portugal_apartments_test.csv')
+train.to_csv('data/portugal_apartments_train.csv')
+test.to_csv('data/portugal_apartments_test.csv')
 
