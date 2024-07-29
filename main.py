@@ -40,7 +40,7 @@ d_c['Price_m2'] = d_c['Price_m2'].round(2)
 d_c = pd.get_dummies(d_c, columns=['Location'])
 
 # Define the features (X) and the target (y)
-X = d_c[['Price_m2'] + [col for col in d_c.columns if col.startswith('Location_')]]
+X = d_c[['Rooms', 'Area']]
 y = d_c['Price']  # Ensure `Price` is the target variable
 
 # Split the data
@@ -119,3 +119,5 @@ results_df = pd.DataFrame(data=[["Linear Regression", *print_evaluate(y_test, te
                           columns=['Model', 'MAE', 'MSE', 'RMSE', 'R2 Square', "Cross Validation"])
 
 print(results_df)
+print('----------------- PREDICTION -----------------')
+print(train_pred)
