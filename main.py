@@ -71,11 +71,14 @@ def print_evaluate(true, predicted):
     mse = metrics.mean_squared_error(true, predicted)
     rmse = np.sqrt(mse)
     r2_square = metrics.r2_score(true, predicted)
-    return mae, mse, rmse, r2_square
+    # Adding Mean Absolute Percentage Error (MAPE)
+    mape = np.mean(np.abs((true - predicted) / true)) * 100
+    return mae, mse, rmse, r2_square, mape
 
 def cross_val(model):
-    pred = cross_val_score(model, X, y, cv=10)
-    return pred.mean()
+    # Cross-validation with scoring as negative mean squared error
+    pred = cross_val_score(model, X, y, cv=10, scoring='neg_mean_squared_error')
+    return -pred.mean()
 
 # Plotting
 plt.figure(figsize=(12, 6))
@@ -97,27 +100,53 @@ plt.xlabel('Error')
 plt.tight_layout()
 plt.show()
 
+# Evaluate on both test and training sets
 test_pred = pipeline.predict(X_test)
 train_pred = pipeline.predict(X_train)
 
-print('Test set evaluation:\n_____________________________________')
-mae, mse, rmse, r2_square = print_evaluate(y_test, test_pred)
-print(f'MAE: {mae}')
-print(f'MSE: {mse}')
-print(f'RMSE: {rmse}')
-print(f'R2 Square: {r2_square}')
-print('_____________________________________')
-print('Train set evaluation:\n_____________________________________')
-mae, mse, rmse, r2_square = print_evaluate(y_train, train_pred)
-print(f'MAE: {mae}')
-print(f'MSE: {mse}')
-print(f'RMSE: {rmse}')
-print(f'R2 Square: {r2_square}')
+# Obtain metrics for training and test data
+mae_test, mse_test, rmse_test, r2_test, mape_test = print_evaluate(y_test, test_pred)
+mae_train, mse_train, rmse_train, r2_train, mape_train = print_evaluate(y_train, train_pred)
 
-# Create the results DataFrame
-results_df = pd.DataFrame(data=[["Linear Regression", *print_evaluate(y_test, test_pred) , cross_val(LinearRegression())]], 
-                          columns=['Model', 'MAE', 'MSE', 'RMSE', 'R2 Square', "Cross Validation"])
+# Create a DataFrame for easy plotting
+metrics_df = pd.DataFrame({
+    'Set': ['Train', 'Test'],
+    'MSE': [mse_train, mse_test],
+    'RMSE': [rmse_train, rmse_test],
+    'R2 Square': [r2_train, r2_test]
+})
 
-print(results_df)
-print('----------------- PREDICTION -----------------')
-print(train_pred)
+# Plot MSE and RMSE
+fig, ax1 = plt.subplots()
+
+# Create twin axes for plotting different scales
+ax2 = ax1.twinx()
+
+# Plot MSE
+metrics_df.plot(kind='bar', x='Set', y='MSE', ax=ax1, color='lightblue', position=1, width=0.4, legend=False)
+ax1.set_ylabel('Mean Squared Error (MSE)', color='lightblue')
+
+# Plot RMSE
+metrics_df.plot(kind='bar', x='Set', y='RMSE', ax=ax2, color='salmon', position=0, width=0.4, legend=False)
+ax2.set_ylabel('Root Mean Squared Error (RMSE)', color='salmon')
+
+# Add titles and labels
+ax1.set_title('Model Evaluation Metrics')
+ax1.set_xlabel('Data Set')
+ax1.set_xticklabels(metrics_df['Set'], rotation=0)
+
+# Add legend
+ax1.legend(['MSE'], loc='upper left')
+ax2.legend(['RMSE'], loc='upper right')
+
+plt.show()
+
+# Plot R2 Square
+plt.figure(figsize=(8, 5))
+metrics_df.plot(kind='bar', x='Set', y='R2 Square', color='lightgreen', legend=False)
+plt.title('R2 Square Metric')
+plt.xlabel('Data Set')
+plt.ylabel('R2 Square')
+plt.xticks(rotation=0)
+plt.ylim(-1, 1)
+# plt.show()
