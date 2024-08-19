@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
+from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn import metrics
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import LabelEncoder
 
 # Load and preprocess data
 data = pd.read_csv('data/portugal_apartments.csv')
@@ -22,6 +24,7 @@ d_c.drop('Index', axis=1, inplace=True)
 # Type column treatment
 d_c.rename(columns={'Type': 'Rooms'}, inplace=True)
 d_c['Rooms'] = d_c['Rooms'].str.replace('T', '')
+d_c['Rooms'] = pd.to_numeric(d_c['Rooms'])
 
 # Area column treatment
 d_c['Area'] = d_c['Area'].str.replace(' ', '.')
@@ -36,103 +39,83 @@ d_c['Area'] = pd.to_numeric(d_c['Area'])
 apartments = d_c.copy()
 numerical_data = apartments[['Rooms', 'Price', 'Area']]
 
-X = apartments.iloc[:, :-1].values
-Y = apartments.iloc[:, 3].values
+X = apartments.iloc[:, :].values
+Y = apartments.iloc[:, 1].values
 
-print(numerical_data.head())
+# print(X)
 
 #Correlation Matrix
-sns.heatmap(numerical_data.corr())
+sns.heatmap(numerical_data.corr(), annot=True, cmap='coolwarm')
 plt.show()
 
-# # Create a new column called price_per_sqm
-# # d_c['Price_m2'] = d_c['Price'] / d_c['Area']
-# # d_c['Price_m2'] = d_c['Price_m2'].round(2)
+#Label encoding
+labelencoder = LabelEncoder()
 
-# # One-hot encoding for location
-# # d_c = pd.get_dummies(d_c, columns=['Location'])
+X[:, 3] = labelencoder.fit_transform(X[:, 3])
+onehotencoder = OneHotEncoder(categories = [3])
 
-# # print(d_c.head())
+onehotencoder = ColumnTransformer(
+    transformers=[('onehot', OneHotEncoder(), [3])],
+    remainder='passthrough'
+)
 
-# # Define the features (X) and the target (y)
-# X = d_c[['Rooms', 'Area']]
-# y = d_c['Price']  # Ensure `Price` is the target variable
+X = onehotencoder.fit_transform(X)
+# X = np.array(X)
 
-# # Split the data
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+# Data Scaling
+scaler = StandardScaler(with_mean=False)
+X = scaler.fit_transform(X)
 
-# # Define and fit the pipeline
-# pipeline = Pipeline([
-#     ('std_scalar', StandardScaler()),  # Standardize features
-#     ('lin_reg', LinearRegression())  # Linear regression model
-# ])
+# print(X)
 
-# pipeline.fit(X_train, y_train)
+# Data split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
-# # Make predictions
-# y_pred = pipeline.predict(X_test)
+# Fitting the model
+regressor = LinearRegression()
+regressor.fit(X_train, Y_train)
 
-# # Extract the model and coefficients
-# lin_reg_model = pipeline.named_steps['lin_reg']
-# coeff_df = pd.DataFrame(lin_reg_model.coef_, X.columns, columns=['Coefficient'])
+# Predicting the test set results
+Y_pred = regressor.predict(X_test)
+print(Y_pred)
 
-# # Output the results
-# print("Intercept:", lin_reg_model.intercept_)
-# print(coeff_df)
+# Fitting the model with Lasso regression
+# from sklearn.linear_model import Lasso
+# regressor = Lasso(alpha=0.1)
+# regressor.fit(X_train, Y_train)
 
-# # Evaluate the model
-# def print_evaluate(true, predicted):
-#     mae = metrics.mean_absolute_error(true, predicted)
-#     mse = metrics.mean_squared_error(true, predicted)
-#     rmse = np.sqrt(mse)
-#     r2_square = metrics.r2_score(true, predicted)
-#     return mae, mse, rmse, r2_square
+# # Predicting the test set results
+# Y_pred = regressor.predict(X_test)
+# print(Y_pred)
 
-# def cross_val(model):
-#     pred = cross_val_score(model, X, y, cv=10)
-#     return pred.mean()
+# # Fitting the model with Ridge regression
+# from sklearn.linear_model import Ridge
+# regressor = Ridge(alpha=0.1)
+# regressor.fit(X_train, Y_train)
 
-# # Plotting
-# plt.figure(figsize=(12, 6))
+# # Predicting the test set results
+# Y_pred = regressor.predict(X_test)
+# print(Y_pred)
 
-# # Scatter plot of true vs. predicted values
-# plt.subplot(1, 2, 1)
-# plt.scatter(y_test, y_pred, alpha=0.5)
-# plt.xlabel('True Values')
-# plt.ylabel('Predicted Values')
-# plt.title('True vs. Predicted Values')
+# Calculating the coefficients and intercept
+print('Coefficients: \n', regressor.coef_)
+print('Intercept: \n', regressor.intercept_)
 
-# # Plotting the error distribution
-# plt.subplot(1, 2, 2)
-# errors = y_test - y_pred
-# pd.Series(errors).plot.kde()
-# plt.title('Error Distribution')
-# plt.xlabel('Error')
+# Model evaluation
+from sklearn.metrics import r2_score
+r2 = r2_score(Y_test, Y_pred)
+print('R2 Score: ', r2)
 
-# plt.tight_layout()
-# plt.show()
+# Cross validation
+cv_score = cross_val_score(regressor, X, Y, cv=5)
+print('Cross Validation Score: ', cv_score)
 
-# test_pred = pipeline.predict(X_test)
-# train_pred = pipeline.predict(X_train)
+# Visualizing the results
+plt.scatter(Y_test, Y_pred, color='red')
+plt.title('Predicted vs Actual')
+plt.xlabel('Actual')
+plt.ylabel('Predicted')
+plt.show()
 
-# print('Test set evaluation:\n_____________________________________')
-# mae, mse, rmse, r2_square = print_evaluate(y_test, test_pred)
-# print(f'MAE: {mae}')
-# print(f'MSE: {mse}')
-# print(f'RMSE: {rmse}')
-# print(f'R2 Square: {r2_square}')
-# print('_____________________________________')
-# print('Train set evaluation:\n_____________________________________')
-# mae, mse, rmse, r2_square = print_evaluate(y_train, train_pred)
-# print(f'MAE: {mae}')
-# print(f'MSE: {mse}')
-# print(f'RMSE: {rmse}')
-# print(f'R2 Square: {r2_square}')
+print(apartments.info())
 
-# # Create the results DataFrame
-# results_df = pd.DataFrame(data=[["Linear Regression", *print_evaluate(y_test, test_pred) , cross_val(LinearRegression())]], 
-#                           columns=['Model', 'MAE', 'MSE', 'RMSE', 'R2 Square', "Cross Validation"])
-
-# print(results_df)
-# print('----------------- PREDICTION -----------------')
-# print(train_pred)
