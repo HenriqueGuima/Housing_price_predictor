@@ -117,5 +117,7 @@ plt.xlabel('Actual')
 plt.ylabel('Predicted')
 plt.show()
 
-print(apartments.info())
+# Save the new data
+apartments.to_csv('data/portugal_apartments_cleaned.csv', index=False)
+print('Data saved successfully!')
 
