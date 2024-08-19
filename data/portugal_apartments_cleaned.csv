@@ -122,7 +122,7 @@ Rooms,Price,Area,Location
 1,179000,70.0,Porto
 3,290000,118.0,Porto
 2,178000,90.0,Porto
-3,126000,100.0,Apartamento para comprar: Castelo Branco
+3,126000,100.0,Castelo Branco
 2,418000,91.2,Porto
 2,892500,113.0,Lisboa
 2,300000,75.0,Faro
@@ -701,7 +701,7 @@ Rooms,Price,Area,Location
 2,312000,78.0,Porto
 3,1080000,167.98,Faro
 2,950000,142.68,Faro
-3,169900,120.0,Apartamento para comprar: Castelo Branco
+3,169900,120.0,Castelo Branco
 2,200000,78.3,Porto
 3,360000,141.0,Braga
 2,249900,70.0,Porto
@@ -1108,12 +1108,12 @@ Rooms,Price,Area,Location
 3,395000,136.0,Setúbal
 3,350000,134.0,Braga
 3,199950,150.0,Aveiro
-1,185000,64.0,Apartamento para comprar: Viseu
-2,365000,114.0,Apartamento para comprar: Viseu
+1,185000,64.0,Viseu
+2,365000,114.0,Viseu
 3,365000,162.0,Viseu
-2,380000,121.0,Apartamento para comprar: Viseu
+2,380000,121.0,Viseu
 3,235000,105.0,Coimbra
-2,250000,87.0,Apartamento para comprar: Viseu
+2,250000,87.0,Viseu
 1,230000,74.7,Porto
 2,260000,66.0,Faro
 5,365000,150.0,Braga
@@ -1175,7 +1175,7 @@ Rooms,Price,Area,Location
 5,645000,179.0,Porto
 1,270000,73.45,Porto
 3,395000,168.0,Ilha de São Miguel
-3,210000,124.5,Apartamento para comprar: Viseu
+3,210000,124.5,Viseu
 3,397500,108.35,Porto
 2,352000,81.36,Faro
 1,152500,61.0,Setúbal
@@ -1394,7 +1394,7 @@ Rooms,Price,Area,Location
 3,370000,130.0,Lisboa
 2,535000,106.0,Lisboa
 2,665500,115.0,Porto
-2,127500,79.0,Apartamento para comprar: Castelo Branco
+2,127500,79.0,Castelo Branco
 2,550000,106.0,Porto
 2,297000,95.64,Porto
 3,177000,98.9,Setúbal
@@ -1556,7 +1556,7 @@ Rooms,Price,Area,Location
 3,350000,110.32,Faro
 2,270000,100.0,Faro
 3,165000,141.0,Santarém
-2,185000,121.0,Apartamento para comprar: Castelo Branco
+2,185000,121.0,Castelo Branco
 3,550000,167.0,Porto
 3,255000,85.0,Lisboa
 2,309990,115.85,Lisboa
@@ -1860,7 +1860,7 @@ Rooms,Price,Area,Location
 3,545000,165.0,Lisboa
 0,189500,33.5,Porto
 3,396000,123.1,Porto
-5,160000,135.0,Apartamento para comprar: Castelo Branco
+5,160000,135.0,Castelo Branco
 4,299900,204.0,Porto
 1,179000,47.0,Braga
 3,1350000,187.0,Porto
@@ -3081,7 +3081,7 @@ Rooms,Price,Area,Location
 3,285000,98.0,Lisboa
 1,295900,52.0,Lisboa
 3,137500,121.0,Santarém
-3,225000,102.0,Apartamento para comprar: Castelo Branco
+3,225000,102.0,Castelo Branco
 3,470000,92.0,Lisboa
 2,225000,71.0,Aveiro
 3,540000,139.0,Porto
@@ -3751,7 +3751,7 @@ Rooms,Price,Area,Location
 3,220000,105.0,Santarém
 3,230000,117.0,Santarém
 3,240000,117.0,Santarém
-4,780000,186.0,Apartamento para comprar: Viseu
+4,780000,186.0,Viseu
 2,219900,72.0,Porto
 2,159000,67.0,Leiria
 2,182500,84.0,Coimbra
@@ -5264,7 +5264,7 @@ Rooms,Price,Area,Location
 2,175000,74.0,Porto
 2,139000,78.0,Porto
 4,540000,129.5,Lisboa
-4,350000,223.0,Apartamento para comprar: Viseu
+4,350000,223.0,Viseu
 2,212000,104.0,Braga
 6,498000,184.0,Lisboa
 2,265000,99.0,Porto
@@ -6007,7 +6007,7 @@ Rooms,Price,Area,Location
 3,220000,95.0,Lisboa
 2,200000,68.0,Lisboa
 2,289900,86.0,Porto
-3,169000,106.5,Apartamento para comprar: Guarda
+3,169000,106.5,Guarda
 2,184900,86.95,Porto
 2,192900,88.3,Porto
 2,186900,88.1,Porto
@@ -6107,7 +6107,7 @@ Rooms,Price,Area,Location
 1,165000,44.57,Castelo Branco
 3,250000,129.48,Castelo Branco
 2,192000,75.3,Faro
-5,229500,180.0,Apartamento para comprar: Castelo Branco
+5,229500,180.0,Castelo Branco
 2,625000,84.14,Lisboa
 4,528000,190.0,Aveiro
 3,356000,115.0,Porto
@@ -6159,8 +6159,8 @@ Rooms,Price,Area,Location
 3,455000,158.0,Setúbal
 3,465000,158.0,Setúbal
 3,499000,95.0,Faro
-2,270000,62.0,Apartamento para comprar: Viseu
-2,280000,62.0,Apartamento para comprar: Viseu
+2,270000,62.0,Viseu
+2,280000,62.0,Viseu
 2,120000,84.0,Coimbra
 2,299000,112.81,Setúbal
 1,235000,47.0,Porto
@@ -10593,7 +10593,7 @@ Rooms,Price,Area,Location
 3,770000,168.0,Lisboa
 3,373000,134.0,Lisboa
 3,450000,119.0,Setúbal
-2,159500,102.0,Apartamento para comprar: Castelo Branco
+2,159500,102.0,Castelo Branco
 3,115000,103.0,Castelo Branco
 2,650000,97.0,Lisboa
 3,340000,137.0,Porto
@@ -11865,11 +11865,11 @@ Rooms,Price,Area,Location
 4,4500000,395.0,Lisboa
 3,215000,112.45,Santarém
 1,410000,74.73,Porto
-3,245000,116.54,Apartamento para comprar: Castelo Branco
-3,225000,133.98,Apartamento para comprar: Castelo Branco
-3,215000,127.6,Apartamento para comprar: Castelo Branco
-3,220000,146.2,Apartamento para comprar: Castelo Branco
-3,210000,93.49,Apartamento para comprar: Castelo Branco
+3,245000,116.54,Castelo Branco
+3,225000,133.98,Castelo Branco
+3,215000,127.6,Castelo Branco
+3,220000,146.2,Castelo Branco
+3,210000,93.49,Castelo Branco
 3,475000,107.0,Porto
 3,840000,166.74,Porto
 3,840000,169.83,Porto
@@ -12560,7 +12560,7 @@ Rooms,Price,Area,Location
 2,175000,74.0,Porto
 2,139000,78.0,Porto
 4,540000,129.5,Lisboa
-4,350000,223.0,Apartamento para comprar: Viseu
+4,350000,223.0,Viseu
 2,212000,104.0,Braga
 6,498000,184.0,Lisboa
 2,265000,99.0,Porto
@@ -13417,7 +13417,7 @@ Rooms,Price,Area,Location
 3,478200,141.2,Porto
 3,524000,144.4,Porto
 3,550000,184.0,Porto
-3,180000,132.0,Apartamento para comprar: Castelo Branco
+3,180000,132.0,Castelo Branco
 3,380100,120.0,Porto
 2,374100,92.0,Porto
 3,463800,120.0,Porto
@@ -13810,7 +13810,7 @@ Rooms,Price,Area,Location
 3,463800,120.0,Porto
 3,235000,105.4,Aveiro
 2,374100,92.0,Porto
-3,155000,93.85,Apartamento para comprar: Viseu
+3,155000,93.85,Viseu
 2,315000,109.0,Porto
 3,529000,193.0,Leiria
 3,385000,110.0,Leiria
@@ -13951,7 +13951,7 @@ Rooms,Price,Area,Location
 1,119000,49.0,Coimbra
 3,224000,115.0,Setúbal
 2,195000,72.0,Coimbra
-3,180000,107.22,Apartamento para comprar: Castelo Branco
+3,180000,107.22,Castelo Branco
 1,275000,53.0,Porto
 3,155000,153.0,Viseu
 3,260000,127.0,Aveiro
@@ -14544,11 +14544,11 @@ Rooms,Price,Area,Location
 3,330000,123.0,Porto
 2,150000,66.6,Viana do Castelo
 3,1090000,110.0,Lisboa
-3,215000,127.6,Apartamento para comprar: Castelo Branco
+3,215000,127.6,Castelo Branco
 2,684000,130.0,Lisboa
 3,197000,115.0,Porto
 4,780000,159.0,Setúbal
-3,215000,127.6,Apartamento para comprar: Castelo Branco
+3,215000,127.6,Castelo Branco
 2,684000,130.0,Lisboa
 3,197000,115.0,Porto
 4,780000,159.0,Setúbal
@@ -14623,7 +14623,7 @@ Rooms,Price,Area,Location
 2,305000,80.0,Lisboa
 4,850000,143.0,Lisboa
 2,330000,81.0,Setúbal
-3,126500,93.0,Apartamento para comprar: Castelo Branco
+3,126500,93.0,Castelo Branco
 1,315000,74.56,Faro
 2,375000,93.2,Faro
 2,280000,115.0,Leiria
@@ -14669,7 +14669,7 @@ Rooms,Price,Area,Location
 1,235000,61.0,Viseu
 1,220000,61.0,Viseu
 1,215000,61.0,Viseu
-1,210000,61.0,Apartamento para comprar: Viseu
+1,210000,61.0,Viseu
 1,230000,61.0,Viseu
 3,840000,126.0,Lisboa
 4,890000,126.0,Lisboa
@@ -14707,7 +14707,7 @@ Rooms,Price,Area,Location
 4,555000,139.05,Lisboa
 3,445000,105.0,Lisboa
 2,259000,112.0,Lisboa
-2,340000,109.0,Apartamento para comprar: Viseu
+2,340000,109.0,Viseu
 2,500000,181.0,Viseu
 2,310000,109.0,Viseu
 2,550000,182.0,Viseu
@@ -14731,7 +14731,7 @@ Rooms,Price,Area,Location
 3,325000,128.0,Setúbal
 3,650000,203.0,Lisboa
 2,260000,111.0,Ilha da Madeira
-3,145000,109.57,Apartamento para comprar: Castelo Branco
+3,145000,109.57,Castelo Branco
 3,410000,120.0,Lisboa
 3,485000,98.35,Porto
 3,340000,129.0,Porto
@@ -14794,7 +14794,7 @@ Rooms,Price,Area,Location
 3,340000,118.0,Setúbal
 3,330000,118.0,Setúbal
 3,225000,187.0,Porto
-2,137000,90.0,Apartamento para comprar: Castelo Branco
+2,137000,90.0,Castelo Branco
 2,260000,95.0,Porto
 2,260000,147.0,Leiria
 2,380000,90.0,Porto
@@ -14878,9 +14878,9 @@ Rooms,Price,Area,Location
 1,165000,66.0,Aveiro
 1,315000,70.0,Porto
 3,285000,100.0,Lisboa
-3,267500,105.7,Apartamento para comprar: Castelo Branco
-2,205000,75.9,Apartamento para comprar: Castelo Branco
-3,265000,100.35,Apartamento para comprar: Castelo Branco
+3,267500,105.7,Castelo Branco
+2,205000,75.9,Castelo Branco
+3,265000,100.35,Castelo Branco
 1,125000,48.24,Aveiro
 1,125000,48.24,Aveiro
 2,905000,97.34,Lisboa
@@ -14912,8 +14912,8 @@ Rooms,Price,Area,Location
 3,185000,99.0,Leiria
 3,598000,111.0,Porto
 3,435000,116.0,Lisboa
-3,245000,94.8,Apartamento para comprar: Castelo Branco
-3,255000,100.35,Apartamento para comprar: Castelo Branco
+3,245000,94.8,Castelo Branco
+3,255000,100.35,Castelo Branco
 1,349000,48.25,Lisboa
 2,239500,90.0,Leiria
 3,335000,121.0,Setúbal
@@ -14926,11 +14926,11 @@ Rooms,Price,Area,Location
 4,350000,145.0,Porto
 2,389000,88.0,Lisboa
 2,180000,72.6,Setúbal
-2,125900,69.0,Apartamento para comprar: Castelo Branco
+2,125900,69.0,Castelo Branco
 2,290000,53.9,Setúbal
 3,345000,197.0,Leiria
 3,1390000,237.0,Lisboa
-4,87500,73.0,Apartamento para comprar: Castelo Branco
+4,87500,73.0,Castelo Branco
 5,500000,184.0,Setúbal
 3,320000,135.0,Setúbal
 3,650000,154.0,Porto
@@ -15006,7 +15006,7 @@ Rooms,Price,Area,Location
 1,490000,56.0,Lisboa
 2,880000,116.0,Lisboa
 1,480000,60.0,Lisboa
-3,173000,122.3,Apartamento para comprar: Castelo Branco
+3,173000,122.3,Castelo Branco
 3,339990,148.64,Aveiro
 2,216990,103.53,Aveiro
 3,294000,128.0,Braga
@@ -15053,7 +15053,7 @@ Rooms,Price,Area,Location
 3,130000,105.0,Santarém
 1,215000,46.0,Setúbal
 2,269000,73.0,Faro
-3,127500,79.2,Apartamento para comprar: Castelo Branco
+3,127500,79.2,Castelo Branco
 3,440000,146.0,Porto
 2,155000,86.0,Setúbal
 3,370000,125.0,Setúbal
@@ -15213,7 +15213,7 @@ Rooms,Price,Area,Location
 3,660000,150.2,Lisboa
 4,840000,176.0,Lisboa
 2,640000,124.7,Lisboa
-5,160000,135.0,Apartamento para comprar: Castelo Branco
+5,160000,135.0,Castelo Branco
 0,185000,32.0,Aveiro
 3,199665,114.0,Santarém
 3,325000,93.0,Ilha da Madeira
@@ -15337,7 +15337,7 @@ Rooms,Price,Area,Location
 2,521856,109.0,Porto
 3,330000,100.0,Coimbra
 4,240000,122.0,Ilha da Madeira
-2,145000,57.52,Apartamento para comprar: Viseu
+2,145000,57.52,Viseu
 0,300000,38.0,Lisboa
 1,337500,50.0,Lisboa
 2,140000,79.0,Santarém
@@ -15363,7 +15363,7 @@ Rooms,Price,Area,Location
 2,275000,111.7,Braga
 0,234000,58.0,Porto
 3,550000,154.0,Porto
-3,260000,146.2,Apartamento para comprar: Castelo Branco
+3,260000,146.2,Castelo Branco
 1,279900,41.0,Lisboa
 1,206000,55.48,Braga
 2,350000,82.0,Porto
@@ -15522,7 +15522,7 @@ Rooms,Price,Area,Location
 1,580000,106.4,Setúbal
 3,205000,107.0,Setúbal
 2,925000,134.0,Lisboa
-3,215000,89.86,Apartamento para comprar: Castelo Branco
+3,215000,89.86,Castelo Branco
 3,485000,92.0,Porto
 3,355000,114.0,Faro
 3,360000,114.0,Faro
@@ -15552,7 +15552,7 @@ Rooms,Price,Area,Location
 2,420000,97.0,Ilha da Madeira
 3,435000,142.0,Porto
 1,350000,50.0,Porto
-3,210000,93.49,Apartamento para comprar: Castelo Branco
+3,210000,93.49,Castelo Branco
 2,405000,130.0,Lisboa
 3,280000,216.0,Leiria
 2,258000,116.22,Ilha da Madeira
@@ -15675,8 +15675,8 @@ Rooms,Price,Area,Location
 1,195000,55.0,Braga
 2,135000,85.0,Santarém
 5,970000,200.0,Lisboa
-5,229900,160.0,Apartamento para comprar: Castelo Branco
-3,249500,125.0,Apartamento para comprar: Castelo Branco
+5,229900,160.0,Castelo Branco
+3,249500,125.0,Castelo Branco
 3,405000,119.25,Lisboa
 3,410000,132.5,Lisboa
 2,985000,115.85,Lisboa
@@ -15785,7 +15785,7 @@ Rooms,Price,Area,Location
 2,475000,93.0,Porto
 2,240000,60.0,Porto
 2,480000,108.0,Faro
-3,215000,105.9,Apartamento para comprar: Castelo Branco
+3,215000,105.9,Castelo Branco
 3,1990000,200.0,Lisboa
 3,420000,128.0,Porto
 3,450000,148.0,Porto

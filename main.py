@@ -18,6 +18,9 @@ d_c = data.copy()
 mask = d_c['Price'] != 'Preçosobconsulta'
 d_c = d_c[mask]
 
+# Remove 'Apartamento para comprar:' from the beginning of the string if it exists in the location column
+d_c['Location'] = d_c['Location'].str.replace('Apartamento para comprar: ', '')
+
 # Drop index column
 d_c.drop('Index', axis=1, inplace=True)
 
