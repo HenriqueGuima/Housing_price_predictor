@@ -1,7 +1,6 @@
-Correlation Matrix:
+
 ![Corr_matrix](https://github.com/user-attachments/assets/ea66d497-b42f-4e5f-bb66-5844b61f6f54)
 
-Prediction vs Actual values
 ![prediction](https://github.com/user-attachments/assets/4f6f6380-6c3d-4349-9d8c-8ff67da8c80a)
 
 Y_pred:
